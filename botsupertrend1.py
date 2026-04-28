@@ -108,8 +108,7 @@ def run_bot():
     symbols = load_symbols()
 
     send_telegram("🚀 BOT 1 AKTIF - SUPER TREND 4H (VOL SPIKE)")
-
-    while True:
+
         print("Scanning market...")
 
         results = []
@@ -170,7 +169,7 @@ def run_bot():
         else:
             send_telegram("❌ Tidak ada saham sesuai kriteria")
 
-        print("Sleep...\n")
+        print("done...\n")
   
 
 # =========================
