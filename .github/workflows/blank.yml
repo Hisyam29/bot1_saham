@@ -21,3 +21,5 @@ jobs:
 
       - name: Run bot1
         run: python bot super trend1.py
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
