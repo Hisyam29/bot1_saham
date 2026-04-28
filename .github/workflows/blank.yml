@@ -20,6 +20,6 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run bot1
-        run: python bot super trend1.py
+        run: python bot_super_trend1.py
         env:
           TOKEN: ${{ secrets.TOKEN }}
