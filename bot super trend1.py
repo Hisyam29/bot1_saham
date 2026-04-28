@@ -9,7 +9,7 @@ import os
 # =========================
 TOKEN = os.getenv("TOKEN")
 CHAT_IDS = [
-    "1280847575",  # kamu
+    "1280847575",  # kam
     
 ]
 
