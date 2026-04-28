@@ -42,7 +42,7 @@ def send_telegram(message):
 # LOAD SAHAM DARI EXCEL
 # =========================
 def load_symbols():
-    df = pd.read_excel(r"C:\Users\Hisyam\OneDrive\Documents\Coding\saham.xlsx")
+    df = pd.read_excel("saham.xlsx")
 
     print("KOLOM TERDETEKSI:", df.columns)
 
