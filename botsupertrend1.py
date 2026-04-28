@@ -19,7 +19,6 @@ PERIOD = "30d"
 ATR_PERIOD = 2
 MULTIPLIER = 1
 
-CHECK_INTERVAL = 1800  # 30 menit
 
 # =========================
 # TELEGRAM
@@ -172,7 +171,7 @@ def run_bot():
             send_telegram("❌ Tidak ada saham sesuai kriteria")
 
         print("Sleep...\n")
-        time.sleep(CHECK_INTERVAL)
+  
 
 # =========================
 # RUN
