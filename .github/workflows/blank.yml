@@ -19,5 +19,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run bot
-        run: python bot.py
+      - name: Run bot1
+        run: python bot super trend1.py
