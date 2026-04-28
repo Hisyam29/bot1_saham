@@ -19,9 +19,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Check files
-        run: ls -R
-
       - name: Run bot1
         run: python botsupertrend1.py
         env:
