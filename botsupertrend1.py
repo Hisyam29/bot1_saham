@@ -108,68 +108,52 @@ def run_bot():
     symbols = load_symbols()
 
     send_telegram("🚀 BOT 1 AKTIF - SUPER TREND 4H (VOL SPIKE)")
-
-        print("Scanning market...")
 
-        results = []
+    print("Scanning market...")
 
-        for symbol in symbols:
-            try:
-                df = get_data(symbol)
+    results = []
 
-                if len(df) < 20:
-                    continue
+    for symbol in symbols:
+        try:
+            df = get_data(symbol)
 
-                last_price = df['Close'].iloc[-1]
-                volume_now = df['Volume'].iloc[-1]
-                volume_avg = df['Volume'].rolling(20).mean().iloc[-1]
+            if len(df) < 20:
+                continue
 
-                # =========================
-                # FILTER AWAL
-                # =========================
-                if volume_avg < 1_000_000:
-                    continue
+            last_price = df['Close'].iloc[-1]
+            volume_now = df['Volume'].iloc[-1]
+            volume_avg = df['Volume'].rolling(20).mean().iloc[-1]
 
-                if last_price < 100:
-                    continue
+            if volume_avg < 1_000_000:
+                continue
 
-                # =========================
-                # FILTER VOLUME (WAJIB SPIKE)
-                # =========================
-                if volume_now < volume_avg * 1.5:
-                    continue
+            if last_price < 100:
+                continue
 
-                df = compute_supertrend(df)
+            if volume_now < volume_avg * 1.5:
+                continue
 
-                current_trend = df['in_uptrend'].iloc[-1]
+            df = compute_supertrend(df)
 
-                # =========================
-                # HANYA AMBIL BULLISH
-                # =========================
-                if current_trend:
-                    results.append((symbol, last_price, volume_now, volume_avg))
+            current_trend = df['in_uptrend'].iloc[-1]
 
-                # DEBUG
-                print(symbol, "| Trend:", current_trend)
+            if current_trend:
+                results.append((symbol, last_price, volume_now, volume_avg))
 
-            except Exception as e:
-                print("Error:", symbol, e)
+        except Exception as e:
+            print("Error:", symbol, e)
 
-        # =========================
-        # OUTPUT
-        # =========================
-        if results:
-            message = "🔥 SAHAM POTENSIAL (SUPER TREND + VOL SPIKE)\n\n"
+    if results:
+        message = "🔥 SAHAM POTENSIAL (SUPER TREND + VOL SPIKE)\n\n"
 
-            for r in results[:10]:
-                message += f"{r[0]} | {int(r[1])}\n"
+        for r in results[:10]:
+            message += f"{r[0]} | {int(r[1])}\n"
 
-            send_telegram(message)
+        send_telegram(message)
+    else:
+        send_telegram("❌ Tidak ada saham sesuai kriteria")
 
-        else:
-            send_telegram("❌ Tidak ada saham sesuai kriteria")
-
-        print("done...\n")
+    print("Selesai.\n")
   
 
 # =========================
